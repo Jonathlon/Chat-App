@@ -10,7 +10,7 @@ const Chat = ({ route, navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: color }]}>
-      <Text>Hello {name}!</Text>
+      <Text style={styles.text}>Hello {name}!</Text>
     </View>
   );
 };
@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  text: {
+    color: "#FFFFFF",
   },
 });
 
