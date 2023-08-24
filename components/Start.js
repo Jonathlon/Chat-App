@@ -31,22 +31,50 @@ const Start = ({ navigation }) => {
           {/* Choose color and set state accordingly */}
           <Text style={styles.colorText}>Choose Background Color</Text>
           <View style={styles.colorContainer}>
-            <TouchableOpacity
-              style={[styles.color, { backgroundColor: "#090C08" }]}
-              onPress={() => setColor("#090C08")}
-            />
-            <TouchableOpacity
-              style={[styles.color, { backgroundColor: "#474056" }]}
-              onPress={() => setColor("#474056")}
-            />
-            <TouchableOpacity
-              style={[styles.color, { backgroundColor: "#8A95A5" }]}
-              onPress={() => setColor("#8A95A5")}
-            />
-            <TouchableOpacity
-              style={[styles.color, { backgroundColor: "#B9C6AE" }]}
-              onPress={() => setColor("#B9C6AE")}
-            />
+            <View
+              style={[
+                styles.colorSelectionBorder,
+                color !== "#090C08" ? { borderColor: "white" } : null,
+              ]}
+            >
+              <TouchableOpacity
+                style={[styles.color, { backgroundColor: "#090C08" }]}
+                onPress={() => setColor("#090C08")}
+              />
+            </View>
+            <View
+              style={[
+                styles.colorSelectionBorder,
+                color !== "#474056" ? { borderColor: "white" } : null,
+              ]}
+            >
+              <TouchableOpacity
+                style={[styles.color, { backgroundColor: "#474056" }]}
+                onPress={() => setColor("#474056")}
+              />
+            </View>
+            <View
+              style={[
+                styles.colorSelectionBorder,
+                color !== "#8A95A5" ? { borderColor: "white" } : null,
+              ]}
+            >
+              <TouchableOpacity
+                style={[styles.color, { backgroundColor: "#8A95A5" }]}
+                onPress={() => setColor("#8A95A5")}
+              />
+            </View>
+            <View
+              style={[
+                styles.colorSelectionBorder,
+                color !== "#B9C6AE" ? { borderColor: "white" } : null,
+              ]}
+            >
+              <TouchableOpacity
+                style={[styles.color, { backgroundColor: "#B9C6AE" }]}
+                onPress={() => setColor("#B9C6AE")}
+              />
+            </View>
           </View>
           {/* Enter the Chat Room Button */}
           <TouchableOpacity
@@ -103,6 +131,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 10,
     marginBottom: 10,
+  },
+  colorSelectionBorder: {
+    borderWidth: 2,
+    borderColor: "black",
+    borderRadius: 50,
+    padding: 2,
   },
   button: {
     width: "88%",
