@@ -42,9 +42,10 @@ const Start = ({ navigation }) => {
                 onPress={() => setColor("#090C08")}
               />
             </View>
+
             <View
               style={[
-                styles.colorSelectionBorder,
+                styles.colorSelectionBorder2,
                 color !== "#474056" ? { borderColor: "white" } : null,
               ]}
             >
@@ -55,7 +56,7 @@ const Start = ({ navigation }) => {
             </View>
             <View
               style={[
-                styles.colorSelectionBorder,
+                styles.colorSelectionBorder3,
                 color !== "#8A95A5" ? { borderColor: "white" } : null,
               ]}
             >
@@ -66,7 +67,7 @@ const Start = ({ navigation }) => {
             </View>
             <View
               style={[
-                styles.colorSelectionBorder,
+                styles.colorSelectionBorder4,
                 color !== "#B9C6AE" ? { borderColor: "white" } : null,
               ]}
             >
@@ -134,9 +135,27 @@ const styles = StyleSheet.create({
   },
   colorSelectionBorder: {
     borderWidth: 2,
-    borderColor: "black",
+    borderColor: "#090C08",
     borderRadius: 50,
-    padding: 2,
+    padding: 3,
+  },
+  colorSelectionBorder2: {
+    borderWidth: 2,
+    borderColor: "#474056",
+    borderRadius: 50,
+    padding: 3,
+  },
+  colorSelectionBorder3: {
+    borderWidth: 2,
+    borderColor: "#8A95A5",
+    borderRadius: 50,
+    padding: 3,
+  },
+  colorSelectionBorder4: {
+    borderWidth: 2,
+    borderColor: "#B9C6AE",
+    borderRadius: 50,
+    padding: 3,
   },
   button: {
     width: "88%",
@@ -153,8 +172,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   color: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: 30,
   },
   colorText: {
