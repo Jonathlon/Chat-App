@@ -34,6 +34,7 @@ const Start = ({ navigation }) => {
             <View
               style={[
                 styles.colorSelectionBorder,
+                styles.colorSelectionBorder1,
                 color !== "#090C08" ? { borderColor: "white" } : null,
               ]}
             >
@@ -45,7 +46,8 @@ const Start = ({ navigation }) => {
 
             <View
               style={[
-                styles.colorSelectionBorder2,
+                styles.colorSelectionBorder,
+                styles.colorSelectionBorder1,
                 color !== "#474056" ? { borderColor: "white" } : null,
               ]}
             >
@@ -56,6 +58,7 @@ const Start = ({ navigation }) => {
             </View>
             <View
               style={[
+                styles.colorSelectionBorder,
                 styles.colorSelectionBorder3,
                 color !== "#8A95A5" ? { borderColor: "white" } : null,
               ]}
@@ -67,6 +70,7 @@ const Start = ({ navigation }) => {
             </View>
             <View
               style={[
+                styles.colorSelectionBorder,
                 styles.colorSelectionBorder4,
                 color !== "#B9C6AE" ? { borderColor: "white" } : null,
               ]}
@@ -135,27 +139,20 @@ const styles = StyleSheet.create({
   },
   colorSelectionBorder: {
     borderWidth: 2,
-    borderColor: "#090C08",
     borderRadius: 50,
     padding: 3,
+  },
+  colorSelectionBorder1: {
+    borderColor: "#090C08",
   },
   colorSelectionBorder2: {
-    borderWidth: 2,
     borderColor: "#474056",
-    borderRadius: 50,
-    padding: 3,
   },
   colorSelectionBorder3: {
-    borderWidth: 2,
     borderColor: "#8A95A5",
-    borderRadius: 50,
-    padding: 3,
   },
   colorSelectionBorder4: {
-    borderWidth: 2,
     borderColor: "#B9C6AE",
-    borderRadius: 50,
-    padding: 3,
   },
   button: {
     width: "88%",
