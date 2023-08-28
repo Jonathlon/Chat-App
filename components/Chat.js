@@ -3,7 +3,7 @@ import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
 
 const Chat = ({ route, navigation }) => {
-  const { name } = route.params;
+  const { name, color } = route.params;
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Chat = ({ route, navigation }) => {
   };
 
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.container, { backgroundColor: color }]}>
       <GiftedChat
         messages={messages}
         renderBubble={renderBubble}
