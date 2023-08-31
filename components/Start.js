@@ -7,12 +7,26 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Alert,
 } from "react-native";
 import { useState } from "react";
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 const Start = ({ navigation }) => {
   const [name, setName] = useState("");
   const [color, setColor] = useState("#090C08");
+  const auth = getAuth();
+
+  const signInUser = () => {
+    signInAnonymously(auth)
+      .then((result) => {
+        navigation.navigate("Chat", { name: name, _id: result.user.uid });
+        Alert.alert("Signed in Successfully!");
+      })
+      .catch((error) => {
+        Alert.alert("Unable to sign in, try later again.");
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -86,7 +100,7 @@ const Start = ({ navigation }) => {
           <TouchableOpacity
             style={styles.button}
             // Pass name and color to Chat Screen and enter Chat Room
-            onPress={() => navigation.navigate("Chat", { name, color })}
+            onPress={signInUser}
           >
             <Text style={styles.buttonText}>Start Chatting</Text>
           </TouchableOpacity>
@@ -113,6 +127,7 @@ const styles = StyleSheet.create({
   innerContainer: {
     width: "88%",
     height: "44%",
+    minHeight: 340,
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "#fff",
