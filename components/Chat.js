@@ -49,6 +49,9 @@ const Chat = ({ db, route, navigation, isConnected }) => {
             };
           });
 
+          newMessages.sort((a, b) => b.createdAt - a.createdAt);
+          setMessages(newMessages);
+
           cachedMessages(newMessages);
           setMessages(newMessages);
         }
