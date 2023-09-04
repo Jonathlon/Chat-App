@@ -32,7 +32,7 @@ const Chat = ({ db, route, navigation, isConnected }) => {
       if (unsubMessages) unsubMessages();
       unsubMessages = null;
 
-      const unsubMessages = onSnapshot(
+      unsubMessages = onSnapshot(
         collection(db, "messages"),
         (querySnapshot) => {
           const newMessages = querySnapshot.docs.map((doc) => {
