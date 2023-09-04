@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
     marginBottom: 10,
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "normal",
     color: "#757083",
   },
   image: {
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: "Bold",
   },
   color: {
     width: 50,
@@ -201,12 +201,12 @@ const styles = StyleSheet.create({
   },
   colorText: {
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "normal",
     color: "#757083",
   },
   title: {
     fontSize: 45,
-    fontWeight: 600,
+    fontWeight: "bold",
     color: "#FFFFFF",
     marginTop: "20%",
   },
