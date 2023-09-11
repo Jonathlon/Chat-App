@@ -1,5 +1,7 @@
 # Chat App
 
+![Chatapp Screenshot](https://github.com/Jonathlon/chat-app/assets/113617821/dfed31db-0282-4def-8acc-4b83e3c7fb43)
+
 ## Description
 The Chap app is a mandatory project at CareerFoundry. The app is created via React Native and usable through ‘Expo’ app.
 
