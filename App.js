@@ -8,6 +8,7 @@ import {
   disableNetwork,
   enableNetwork,
 } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 //import React & Expo functions
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Alert } from "react-native";
@@ -31,6 +32,7 @@ const App = () => {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+  const storage = getStorage(app);
 
   //Network Connection Status
   const connectionStatus = useNetInfo();
@@ -54,6 +56,7 @@ const App = () => {
             <Chat
               db={db}
               {...props}
+              storage={storage}
               isConnected={connectionStatus.isConnected}
             />
           )}

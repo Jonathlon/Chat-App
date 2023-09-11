@@ -14,60 +14,51 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MapView from "react-native-maps";
 
 import CustomActions from "./CustomActions";
 
-const Chat = ({ db, route, navigation, isConnected }) => {
+const Chat = ({ db, route, navigation, isConnected, storage }) => {
   const { _id, color, name } = route.params;
   const [messages, setMessages] = useState([]);
-
-  const loadCachedMessages = async () => {
-    const cachedMessages = (await AsyncStorage.getItem("messages")) || "[]";
-    setMessages(JSON.parse(cachedMessages));
-  };
 
   let unsubMessages;
 
   useEffect(() => {
+    navigation.setOptions({ title: name });
+
     if (isConnected === true) {
       if (unsubMessages) unsubMessages();
       unsubMessages = null;
 
-      unsubMessages = onSnapshot(
-        collection(db, "messages"),
-        (querySnapshot) => {
-          const newMessages = querySnapshot.docs.map((doc) => {
-            const data = doc.data();
-            return {
-              _id: doc.id,
-              text: data.text,
-              createdAt: data.createdAt.toDate(),
-              user: {
-                _id: data.user._id,
-                name: data.user.name,
-                avatar: data.user.avatar,
-              },
-            };
+      const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));
+      unsubMessages = onSnapshot(q, (docs) => {
+        let newMessages = [];
+        docs.forEach((doc) => {
+          newMessages.push({
+            id: doc.id,
+            ...doc.data(),
+            createdAt: new Date(doc.data().createdAt.toMillis()),
           });
-
-          newMessages.sort((a, b) => b.createdAt - a.createdAt);
-          setMessages(newMessages);
-
-          cachedMessages(newMessages);
-          setMessages(newMessages);
-        }
-      );
+        });
+        cacheMessages(newMessages);
+        setMessages(newMessages);
+      });
     } else loadCachedMessages();
 
-    // Clean up code
     return () => {
       if (unsubMessages) unsubMessages();
     };
   }, [isConnected]);
 
-  const cachedMessages = async (messagesToCache) => {
+  const loadCachedMessages = async () => {
+    const cachedMessages = (await AsyncStorage.getItem("messages")) || [];
+    setMessages(JSON.parse(cachedMessages));
+  };
+
+  const cacheMessages = async (messagesToCache) => {
     try {
       await AsyncStorage.setItem("messages", JSON.stringify(messagesToCache));
     } catch (error) {
@@ -80,7 +71,7 @@ const Chat = ({ db, route, navigation, isConnected }) => {
   };
 
   const renderInputToolbar = (props) => {
-    if (isConnected) return <InputToolbar {...props} />;
+    if (isConnected === true) return <InputToolbar {...props} />;
     else return null;
   };
 
@@ -101,7 +92,7 @@ const Chat = ({ db, route, navigation, isConnected }) => {
   };
 
   const renderCustomActions = (props) => {
-    return <CustomActions onSend={onSend} {...props} />;
+    return <CustomActions onSend={onSend} {...props} storage={storage} />;
   };
 
   const renderCustomView = (props) => {
